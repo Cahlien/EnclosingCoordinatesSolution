@@ -1,4 +1,4 @@
-FROM conanio/gcc11:latest as base
+FROM conanio/gcc11:latest AS base
 SHELL ["/bin/bash", "-c"]
 RUN sudo apt-get update && sudo apt-get upgrade -y
 RUN pip install conan --upgrade
