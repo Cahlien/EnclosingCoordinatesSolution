@@ -1,4 +1,4 @@
-# Enclosing Coordinates
+# Enclosing Coordinates Solution
 
 
 ## Description
@@ -36,7 +36,7 @@ $ mkdir build
 $ cd build
 $ cmake ..
 $ make
-$ ./EnclosingCoordinates.exe --help
+$ ./EnclosingCoordinatesSolution.exe --help
 ```
 
 ## Running in Docker
@@ -53,18 +53,18 @@ $ cd build
 $ cmake ..
 $ make
 $ cd ..
-$ build/EnclosingCoordinates.exe --file data/points.txt --shape circle
+$ build/EnclosingCoordinatesSolution.exe --file data/points.txt --shape circle
 ```
 
 ### Running the Container Interactively
 ```bash
 $ docker run -it enclosing-coordinates:latest bash
-$ /app/EnclosingCoordinates.exe --file [file] --shape [circle|square] [--fixed]
+$ /app/EnclosingCoordinatesSolution.exe --file [file] --shape [circle|square] [--fixed]
 ```
 
 For more information, run:
 ```bash
-$ /app/EnclosingCoordinates.exe --help
+$ /app/EnclosingCoordinatesSolution.exe --help
 ```
 
 ## Application Guidelines
