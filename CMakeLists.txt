@@ -8,7 +8,7 @@ if ($ENV{ENVIRONMENT_DOCKER})
     include(conanbuildinfo.cmake)
     conan_basic_setup()
     set(Boost_INSTALL_DIR ${CONAN_BOOST_ROOT})
-    set(Boost_USE_STATIC_LIBS ON)
+    set(${PROJECT_NAME}_ENVIRONMENT_DEFINITIONS ENVIRONMENT_DOCKER)
 endif ()
 
 find_package(Boost COMPONENTS program_options unit_test_framework REQUIRED)
@@ -70,6 +70,11 @@ target_include_directories(${PROJECT_NAME}_CIRCLE_TEST.exe
 
 target_link_libraries(${PROJECT_NAME}_CIRCLE_TEST.exe
         ${${PROJECT_NAME}_LIBRARIES}
+        ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+)
+
+target_compile_definitions(${PROJECT_NAME}_CIRCLE_TEST.exe
+        PUBLIC ${${PROJECT_NAME}_ENVIRONMENT_DEFINITIONS}
 )
 
 add_test(
@@ -87,6 +92,10 @@ target_include_directories(${PROJECT_NAME}_SQUARE_TEST.exe
 
 target_link_libraries(${PROJECT_NAME}_SQUARE_TEST.exe
         ${${PROJECT_NAME}_LIBRARIES}
+)
+
+target_compile_definitions(${PROJECT_NAME}_SQUARE_TEST.exe
+        PUBLIC ${${PROJECT_NAME}_ENVIRONMENT_DEFINITIONS}
 )
 
 add_test(

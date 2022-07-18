@@ -14,10 +14,11 @@ RUN sudo chown -R $UID /home/conan
 RUN sudo cp /home/conan/conanbuildinfo.cmake /app/conanbuildinfo.cmake
 WORKDIR /app
 ENV ENVIRONMENT_DOCKER=ON
-RUN cmake .
-RUN make EnclosingCoordinatesSolution.exe
+RUN cmake . && make
 
 FROM fedora:latest AS runtime
 COPY --from=builder /app/data/points.txt /app/data/points.txt
 COPY --from=builder /app/bin/EnclosingCoordinatesSolution.exe /app/EnclosingCoordinatesSolution.exe
+COPY --from=builder /app/bin/EnclosingCoordinatesSolution_CIRCLE_TEST.exe /app/test/EnclosingCoordinatesSolution_CIRCLE_TEST.exe
+COPY --from=builder /app/bin/EnclosingCoordinatesSolution_SQUARE_TEST.exe /app/test/EnclosingCoordinatesSolution_SQUARE_TEST.exe
 CMD ["/app/EnclosingCoordinatesSolution.exe", "--file", "/app/data/points.txt", "--shape", "circle"]
